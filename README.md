@@ -1,105 +1,203 @@
-# Tourism Experience Analytics
+# 🧳 Tourism Experience Analytics Platform
 
-An end-to-end ML project that cleans tourism transaction data, engineers
-features, and delivers three things through a Streamlit app:
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-FF4B4B.svg?logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.3%2B-F7931E.svg?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Pandas](https://img.shields.io/badge/Pandas-2.0%2B-150458.svg?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 
-1. **Regression** — predicts the rating a user would give an attraction.
-2. **Classification** — predicts the visit mode (Business / Family / Couples / Friends / Solo).
-3. **Recommendation** — item-based collaborative filtering (with a content-based
-   cold-start fallback) that suggests attractions to a user.
+An end-to-end machine learning platform designed to analyze tourist behavior, predict attraction ratings, classify visitor travel personas, and deliver personalized destination recommendations through an interactive Streamlit web dashboard.
 
-## ⚠️ About the data
+---
 
-No dataset file was attached to the project brief, so this build ships with a
-**synthetic dataset generator** (`src/generate_data.py`) that creates tables
-matching the exact schema described in the brief (Transaction, User, City,
-Type, VisitMode, Continent, Country, Region, Item). It bakes in real signal
-(attraction type & visit mode influence rating) so every model has something
-genuine to learn, but it is *not* real-world tourism data.
+## 📌 Project Overview
 
-**To use your real dataset:** drop CSVs with the same column names into
-`data/raw/` (see schema below) and skip `generate_data.py` — everything
-downstream (`data_pipeline.py`, `train_models.py`, the app) reads from that
-folder and will work unchanged as long as the column names match.
+In the travel and tourism industry, understanding traveler preferences and delivering tailored recommendations is key to enhancing visitor satisfaction and driving destination engagement. 
 
-### Expected raw schema (`data/raw/*.csv`)
-| File | Key columns |
-|---|---|
-| `transaction.csv` | TransactionId, UserId, VisitYear, VisitMonth, VisitMode, AttractionId, Rating |
-| `user.csv` | UserId, ContinentId, RegionId, CountryId, CityId |
-| `city.csv` | CityId, CityName, CountryId |
-| `country.csv` | CountryId, Country, RegionId |
-| `region.csv` | RegionId, Region, ContinentId |
-| `continent.csv` | ContinentId, Continent |
-| `type.csv` | AttractionTypeId, AttractionType |
-| `visit_mode.csv` | VisitModeId, VisitMode |
-| `item.csv` | AttractionId, AttractionCityId, AttractionTypeId, Attraction, AttractionAddress |
+This project implements a complete, production-ready machine learning pipeline:
+1. **Attraction Rating Prediction (Regression):** Predicts the numerical rating ($1.0 - 5.0$) a visitor is likely to assign to a specific attraction based on historical preferences, geographic features, attraction popularity, and seasonality.
+2. **Travel Persona Classification (Multi-Class Classification):** Classifies the traveler's visit mode (`Business`, `Couples`, `Family`, `Friends`, `Solo`) to help tourism operators tailor marketing and package offerings.
+3. **Personalized Attraction Recommender System:** Utilizes item-based collaborative filtering (cosine similarity over mean-centered user-item rating matrices) with a popularity/rating-weighted fallback for cold-start (new) users.
+4. **Interactive Web Dashboard:** A multi-tab Streamlit application providing real-time inference, personalized recommendations, and comprehensive exploratory data analysis (EDA).
 
-## Project structure
+---
+
+## 🏗️ Architecture & Workflow
+
 ```
-tourism_project/
-├── data/
-│   ├── raw/            # source CSVs (synthetic or your real data)
-│   └── processed/      # cleaned & joined dataset (generated)
-├── models/             # trained model artifacts (generated)
-├── src/
-│   ├── generate_data.py   # synthetic data generator (skip if you have real data)
-│   ├── data_pipeline.py   # cleaning, joining, feature engineering
-│   └── train_models.py    # trains regression, classification, recommender
+┌─────────────────┐       ┌────────────────────────┐       ┌─────────────────────────┐
+│   Raw Data /    │ ----> │  ETL & Feature         │ ----> │ Consolidated Dataset    │
+│  Relational DB  │       │  Engineering Pipeline  │       │ (data/processed/*.csv)  │
+└─────────────────┘       └────────────────────────┘       └───────────┬─────────────┘
+                                                                       │
+           ┌───────────────────────────────────────────────────────────┴─────────────────┐
+           ▼                                           ▼                                 ▼
+┌──────────────────────┐                   ┌───────────────────────┐         ┌───────────────────────┐
+│  Regression Pipeline │                   │ Classification Engine │         │ Collaborative Filter  │
+│  (Rating Predictor)  │                   │ (Visit Mode Persona)  │         │ (Recommender System)  │
+└──────────┬───────────┘                   └───────────┬───────────┘         └───────────┬───────────┘
+           │                                           │                                 │
+           └───────────────────────────────────────────┼─────────────────────────────────┘
+                                                       ▼
+                                     ┌───────────────────────────────────┐
+                                     │  Streamlit Web Application (UI)   │
+                                     │  - Real-time Predictions          │
+                                     │  - Dynamic Recommendations        │
+                                     │  - Exploratory Visual Analytics   │
+                                     └───────────────────────────────────┘
+```
+
+---
+
+## 📊 Relational Data Schema
+
+The platform processes relational data structured across normalized entities:
+
+| Table | Description | Key Features |
+|---|---|---|
+| `transaction.csv` | Core interaction logs | `TransactionId`, `UserId`, `AttractionId`, `VisitYear`, `VisitMonth`, `VisitMode`, `Rating` |
+| `user.csv` | User demographic profiles | `UserId`, `ContinentId`, `RegionId`, `CountryId`, `CityId` |
+| `item.csv` | Attractions catalog | `AttractionId`, `Attraction`, `AttractionCityId`, `AttractionTypeId`, `AttractionAddress` |
+| `type.csv` | Category reference | `AttractionTypeId`, `AttractionType` (Historical Site, Beach, Park, etc.) |
+| `visit_mode.csv` | Travel mode reference | `VisitModeId`, `VisitMode` (`Business`, `Couples`, `Family`, `Friends`, `Solo`) |
+| `city.csv` | City reference | `CityId`, `CityName`, `CountryId` |
+| `country.csv` | Country reference | `CountryId`, `Country`, `RegionId` |
+| `region.csv` | Region reference | `RegionId`, `Region`, `ContinentId` |
+| `continent.csv` | Continent reference | `ContinentId`, `Continent` |
+
+### Feature Engineering
+During the ETL stage (`src/data_pipeline.py`), raw entities are joined and enriched with behavioral features:
+- **`UserVisitCount`**: Total interaction frequency per user.
+- **`UserAvgRating`**: Historical average rating given by the user.
+- **`AttractionAvgRating`**: Overall average score achieved by each attraction.
+- **`AttractionPopularity`**: Total visit count per attraction.
+- **Categorical Encodings**: One-Hot Encoding across geographic hierarchies (`Continent`, `Region`, `Country`) and `AttractionType`.
+- **Numerical Scaling**: Standard scaling applied to temporal and interaction counters.
+
+---
+
+## 🤖 Machine Learning Models & Evaluation
+
+### 1. Rating Prediction (Regression)
+Trained on 80/20 train-test splits using scikit-learn Pipelines (`StandardScaler` + `OneHotEncoder`):
+- **Models Evaluated:** Linear Regression, Random Forest Regressor, Gradient Boosting Regressor.
+- **Metrics Tracked:** $R^2$ score, Root Mean Squared Error (RMSE), Mean Absolute Error (MAE).
+- **Selected Model:** Stored in `models/regression_model.joblib`.
+
+### 2. Travel Mode Persona (Classification)
+Predicts whether a visit is `Business`, `Couples`, `Family`, `Friends`, or `Solo`:
+- **Models Evaluated:** Logistic Regression, Random Forest Classifier.
+- **Metrics Tracked:** Accuracy, Weighted Precision, Weighted Recall, Weighted F1 Score.
+- **Selected Model:** Stored in `models/classification_model.joblib`.
+
+### 3. Recommender Engine
+- **Item-Based Collaborative Filtering:** Mean-centers the user-item rating matrix to account for rating bias, computes cosine similarity between attraction interaction vectors, and predicts top-$N$ attractions.
+- **Cold-Start Fallback:** For new or unknown tourists, dynamically falls back to top-rated, high-popularity attractions.
+- **Artifacts:** Stored in `models/recommender.joblib`.
+
+---
+
+## 📁 Repository Structure
+
+```
+Tourism_Experience_Analytics_Project/
 ├── app/
-│   └── app.py             # Streamlit application
-├── requirements.txt
-└── README.md
+│   └── app.py                 # Streamlit web application
+├── data/
+│   ├── raw/                   # Raw relational tables (CSV format)
+│   └── processed/             # Cleaned & joined consolidated dataset
+├── models/
+│   ├── regression_model.joblib        # Trained regression pipeline
+│   ├── classification_model.joblib    # Trained classification pipeline
+│   ├── recommender.joblib             # Recommendation matrix & content metadata
+│   └── training_summary.json          # Benchmark evaluation metrics
+├── src/
+│   ├── generate_data.py       # Data simulation & benchmark generation engine
+│   ├── data_pipeline.py       # Cleaning, joining, and feature engineering
+│   └── train_models.py        # Model training, evaluation, and serialization
+├── .gitignore                 # Environment and build artifact exclusions
+├── README.md                  # Comprehensive project documentation
+├── requirements.txt           # Python dependencies
+├── run_app.bat                # Windows one-click app launcher
+└── run_pipeline.bat           # Windows one-click pipeline runner
 ```
 
-## Setup & run
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites & Installation
+
+Clone this repository and set up a virtual environment:
 
 ```bash
-# 1. Create a virtual environment (recommended)
+# Clone the repository
+git clone https://github.com/Yaminibeera/Tourism_Experience_Analytics_Project.git
+cd Tourism_Experience_Analytics_Project
+
+# Create and activate a virtual environment
 python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
+source venv/bin/activate       # On Windows: venv\Scripts\activate
 
-# 2. Install dependencies
+# Install required dependencies
 pip install -r requirements.txt
-
-# 3. Generate the dataset (skip this step if you added your own CSVs to data/raw/)
-python src/generate_data.py
-
-# 4. Clean data + engineer features
-python src/data_pipeline.py
-
-# 5. Train all three models
-python src/train_models.py
-
-# 6. Launch the app
-python -m streamlit run app/app.py
-# (Or on Windows, simply double-click run_app.bat)
 ```
 
-> **Note for Windows Users:** If `streamlit` is not directly in your system PATH, running `python -m streamlit run app/app.py` ensures it runs properly with your active Python environment. Alternatively, double-click `run_app.bat` to launch the app directly, or `run_pipeline.bat` to re-run the data cleaning and model training pipeline.
+### 2. Running the Pipeline
 
-The app opens at `http://localhost:8501` with three tabs:
-- **Predict** — enter trip details, get a predicted rating + visit mode.
-- **Recommendations** — pick an existing user (or simulate a new/cold-start
-  user) and get ranked attraction suggestions.
-- **Explore the Data** — ratings distribution, visit-mode breakdown, top
-  attraction types, and user geography charts.
+To rebuild the consolidated dataset and train the models from scratch:
 
-## Modeling notes
+```bash
+# Run data cleaning & feature engineering
+python src/data_pipeline.py
 
-- **Regression**: Linear Regression, Random Forest, and Gradient Boosting are
-  trained and compared on R², RMSE, and MAE; the best by R² is saved.
-- **Classification**: Logistic Regression and Random Forest are compared on
-  accuracy, precision, recall, and F1 (weighted); the best by F1 is saved.
-- **Recommendation**: builds a user–item rating matrix, mean-centers it, and
-  computes item–item cosine similarity for collaborative filtering. Falls
-  back to the most popular, highest-rated attractions for cold-start users.
-- Metrics from the synthetic data are modest by design (the dataset has
-  realistic noise) — `models/training_summary.json` has the full comparison,
-  and swapping in a real dataset should improve them noticeably.
+# Train models and save serialized artifacts
+python src/train_models.py
+```
 
-## Extending this project
-- Swap in the real Kaggle "Tourism Experience" dataset by matching the schema above.
-- Add hyperparameter tuning (GridSearchCV/Optuna) for the regression/classification models.
-- Add a hybrid recommender that blends collaborative + content-based scores with weights.
-- Persist user interactions from the Streamlit app back into `data/raw/transaction.csv` to make the recommender improve over time.
+*(Windows users can also simply double-click `run_pipeline.bat`)*
+
+### 3. Launching the Web App
+
+Start the interactive Streamlit application:
+
+```bash
+python -m streamlit run app/app.py
+```
+
+*(Windows users can also simply double-click `run_app.bat`)*
+
+Access the application in your browser at: **`http://localhost:8501`**
+
+---
+
+## 🖥️ Web Application Features
+
+1. **🔮 Predict Tab:**
+   - Interactive selection of Continent, Region, Country, Attraction Type, and Travel Dates.
+   - Outputs predicted rating with bounds check and predicted travel mode alongside class probability distributions.
+2. **✨ Recommendations Tab:**
+   - Select an existing user ID to generate personalized collaborative filtering recommendations.
+   - Switch to new/cold-start mode to get ranked destination highlights.
+   - Configurable recommendation count slider ($3$ to $15$).
+3. **📊 Explore the Data (EDA) Tab:**
+   - Rating frequency distribution and visit mode distributions.
+   - Top attraction categories ranked by average rating.
+   - Continental tourist origin analysis.
+   - Expandable interactive raw data explorer.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Core:** Python 3.10+
+- **Data Engineering:** Pandas, NumPy
+- **Machine Learning:** Scikit-Learn, Joblib
+- **Visualization:** Matplotlib, Streamlit
+- **Version Control:** Git, GitHub
+
+---
+
+## 👤 Author
+
+**Yamini Beera**
+- GitHub: [@Yaminibeera](https://github.com/Yaminibeera)

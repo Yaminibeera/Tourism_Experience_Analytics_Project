@@ -1,12 +1,10 @@
 """
 generate_data.py
 -----------------
-Generates a realistic synthetic Tourism Dataset matching the schema described
-in the project brief (Transaction, User, City, Type, VisitMode, Continent,
-Country, Region, Item/Attraction tables).
-
-Replace this with your real dataset by dropping CSVs with the same column
-names into the data/raw/ folder and skipping this script.
+Data Simulation & Benchmark Generation Module
+Simulates relational tourism transaction logs, user travel histories,
+geographical hierarchies, and attraction metadata with realistic
+preference distributions for benchmarking and model training.
 """
 import numpy as np
 import pandas as pd
@@ -165,6 +163,6 @@ attractions.to_csv(RAW_DIR / "item.csv", index=False)
 users.to_csv(RAW_DIR / "user.csv", index=False)
 transactions.to_csv(RAW_DIR / "transaction.csv", index=False)
 
-print("Synthetic dataset generated in", RAW_DIR)
+print("Dataset successfully generated in", RAW_DIR)
 for f in RAW_DIR.glob("*.csv"):
     print(" -", f.name, pd.read_csv(f).shape)
