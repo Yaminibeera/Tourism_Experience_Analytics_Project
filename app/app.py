@@ -44,6 +44,14 @@ def load_models():
 df = load_data()
 reg_model, clf_model, rec_artifacts = load_models()
 
+
+def render_dataframe(df_to_render):
+    try:
+        st.dataframe(df_to_render, width="stretch")
+    except TypeError:
+        st.dataframe(df_to_render, use_container_width=True)
+
+
 st.title("🧳 Tourism Experience Analytics")
 st.caption("Personalized attraction ratings, visit-mode prediction, and recommendations.")
 
@@ -89,7 +97,7 @@ with tab_predict:
     }])
 
     if st.button("Predict", type="primary"):
-        pred_rating = reg_model.predict(input_row)[0]
+        pred_rating = float(np.clip(reg_model.predict(input_row)[0], 1.0, 5.0))
         pred_mode = clf_model.predict(input_row)[0]
         mode_proba = clf_model.predict_proba(input_row)[0]
         mode_classes = clf_model.named_steps["model"].classes_
@@ -122,11 +130,23 @@ with tab_recommend:
 
     if st.button("Recommend attractions"):
         recs = recommend_for_user(user_id, rec_artifacts, top_n=top_n)
-        st.dataframe(
-            recs.reset_index()[["AttractionId", "Attraction", "AttractionType",
-                                 "AttractionCityName", "AttractionAvgRating", "AttractionPopularity"]],
-            use_container_width=True,
-        )
+        recs_display = recs.copy()
+        if "AttractionId" not in recs_display.columns:
+            recs_display.index.name = "AttractionId"
+            recs_display = recs_display.reset_index()
+            if "index" in recs_display.columns and "AttractionId" not in recs_display.columns:
+                recs_display = recs_display.rename(columns={"index": "AttractionId"})
+        
+        cols = [
+            "AttractionId",
+            "Attraction",
+            "AttractionType",
+            "AttractionCityName",
+            "AttractionAvgRating",
+            "AttractionPopularity",
+        ]
+        available_cols = [c for c in cols if c in recs_display.columns]
+        render_dataframe(recs_display[available_cols])
 
 # ---------------------------------------------------------------------------
 # TAB 3 — EDA
@@ -142,6 +162,7 @@ with tab_eda:
         ax.set_xlabel("Rating")
         ax.set_ylabel("Count")
         st.pyplot(fig)
+        plt.close(fig)
 
     with c2:
         st.markdown("**Visit mode distribution**")
@@ -150,6 +171,7 @@ with tab_eda:
         ax.set_xlabel("Visit Mode")
         ax.set_ylabel("Count")
         st.pyplot(fig)
+        plt.close(fig)
 
     st.markdown("**Top attraction types by average rating**")
     top_types = df.groupby("AttractionType")["Rating"].mean().sort_values(ascending=False)
@@ -159,4 +181,4 @@ with tab_eda:
     st.bar_chart(df.drop_duplicates("UserId")["Continent"].value_counts())
 
     with st.expander("Raw consolidated dataset (sample)"):
-        st.dataframe(df.sample(min(200, len(df))), use_container_width=True)
+        render_dataframe(df.sample(min(200, len(df))))

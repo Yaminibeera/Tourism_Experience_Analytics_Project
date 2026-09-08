@@ -149,9 +149,12 @@ def recommend_for_user(user_id, artifacts, top_n=5):
             scores = sim_df[user_ratings.index].dot(user_ratings) / sim_df[user_ratings.index].abs().sum(axis=1).replace(0, 1e-9)
             scores = scores.drop(index=user_ratings.index, errors="ignore")
             top = scores.sort_values(ascending=False).head(top_n)
-            return content.loc[top.index]
+            res = content.loc[top.index].copy()
+            res.index.name = "AttractionId"
+            return res
     # Cold start / fallback: most popular highly-rated attractions
-    fallback = content.sort_values(["AttractionAvgRating", "AttractionPopularity"], ascending=False).head(top_n)
+    fallback = content.sort_values(["AttractionAvgRating", "AttractionPopularity"], ascending=False).head(top_n).copy()
+    fallback.index.name = "AttractionId"
     return fallback
 
 
