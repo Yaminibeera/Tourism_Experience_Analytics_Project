@@ -1,0 +1,39 @@
+{
+  "regression": {
+    "best_model": "LinearRegression",
+    "metrics": {
+      "LinearRegression": {
+        "R2": 0.1236,
+        "RMSE": 0.698,
+        "MAE": 0.5722
+      },
+      "RandomForest": {
+        "R2": 0.1093,
+        "RMSE": 0.7037,
+        "MAE": 0.5765
+      },
+      "GradientBoosting": {
+        "R2": 0.1185,
+        "RMSE": 0.7001,
+        "MAE": 0.5736
+      }
+    }
+  },
+  "classification": {
+    "best_model": "RandomForest",
+    "metrics": {
+      "LogisticRegression": {
+        "Accuracy": 0.298,
+        "Precision": 0.197,
+        "Recall": 0.298,
+        "F1": 0.1589
+      },
+      "RandomForest": {
+        "Accuracy": 0.285,
+        "Precision": 0.1985,
+        "Recall": 0.285,
+        "F1": 0.1847
+      }
+    }
+  }
+}

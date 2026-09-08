@@ -1,0 +1,151 @@
+AttractionId,AttractionCityId,AttractionTypeId,Attraction,AttractionAddress
+1,55,6,Adventure #1,New Zealand City 3 Main Road
+2,47,6,Adventure #2,Nigeria City 2 Main Road
+3,38,4,Park #3,Canada-West City 2 Main Road
+4,24,6,Adventure #4,Poland City 2 Main Road
+5,49,2,Museum #5,Ghana City 2 Main Road
+6,33,8,Wildlife #6,Canada-East City 3 Main Road
+7,27,5,Religious Site #7,Romania City 3 Main Road
+8,27,8,Wildlife #8,Romania City 3 Main Road
+9,14,2,Museum #9,Indonesia City 2 Main Road
+10,6,4,Park #10,Nepal City 1 Main Road
+11,33,6,Adventure #11,Canada-East City 3 Main Road
+12,53,4,Park #12,New Zealand City 1 Main Road
+13,4,4,Park #13,Sri Lanka City 2 Main Road
+14,51,2,Museum #14,Australia City 1 Main Road
+15,49,4,Park #15,Ghana City 2 Main Road
+16,17,2,Museum #16,France City 2 Main Road
+17,38,3,Historical Site #17,Canada-West City 2 Main Road
+18,10,6,Adventure #18,Thailand City 2 Main Road
+19,45,6,Adventure #19,Tanzania City 3 Main Road
+20,42,5,Religious Site #20,Kenya City 3 Main Road
+21,21,3,Historical Site #21,Spain City 1 Main Road
+22,5,8,Wildlife #22,Sri Lanka City 3 Main Road
+23,58,1,Beach #23,Samoa City 1 Main Road
+24,27,3,Historical Site #24,Romania City 3 Main Road
+25,53,1,Beach #25,New Zealand City 1 Main Road
+26,40,3,Historical Site #26,Kenya City 1 Main Road
+27,46,8,Wildlife #27,Nigeria City 1 Main Road
+28,45,3,Historical Site #28,Tanzania City 3 Main Road
+29,12,8,Wildlife #29,Vietnam City 2 Main Road
+30,22,4,Park #30,Spain City 2 Main Road
+31,28,6,Adventure #31,USA-East City 1 Main Road
+32,30,4,Park #32,USA-East City 3 Main Road
+33,3,3,Historical Site #33,Sri Lanka City 1 Main Road
+34,33,7,Shopping #34,Canada-East City 3 Main Road
+35,10,8,Wildlife #35,Thailand City 2 Main Road
+36,44,3,Historical Site #36,Tanzania City 2 Main Road
+37,41,7,Shopping #37,Kenya City 2 Main Road
+38,55,3,Historical Site #38,New Zealand City 3 Main Road
+39,44,6,Adventure #39,Tanzania City 2 Main Road
+40,22,7,Shopping #40,Spain City 2 Main Road
+41,58,4,Park #41,Samoa City 1 Main Road
+42,25,6,Adventure #42,Romania City 1 Main Road
+43,20,3,Historical Site #43,Germany City 3 Main Road
+44,54,1,Beach #44,New Zealand City 2 Main Road
+45,22,1,Beach #45,Spain City 2 Main Road
+46,5,4,Park #46,Sri Lanka City 3 Main Road
+47,28,8,Wildlife #47,USA-East City 1 Main Road
+48,47,2,Museum #48,Nigeria City 2 Main Road
+49,12,4,Park #49,Vietnam City 2 Main Road
+50,28,6,Adventure #50,USA-East City 1 Main Road
+51,8,2,Museum #51,Nepal City 3 Main Road
+52,41,6,Adventure #52,Kenya City 2 Main Road
+53,29,3,Historical Site #53,USA-East City 2 Main Road
+54,20,7,Shopping #54,Germany City 3 Main Road
+55,14,5,Religious Site #55,Indonesia City 2 Main Road
+56,34,5,Religious Site #56,USA-West City 1 Main Road
+57,40,2,Museum #57,Kenya City 1 Main Road
+58,56,4,Park #58,Fiji City 1 Main Road
+59,26,7,Shopping #59,Romania City 2 Main Road
+60,10,1,Beach #60,Thailand City 2 Main Road
+61,50,7,Shopping #61,Ghana City 3 Main Road
+62,38,4,Park #62,Canada-West City 2 Main Road
+63,42,6,Adventure #63,Kenya City 3 Main Road
+64,6,6,Adventure #64,Nepal City 1 Main Road
+65,19,4,Park #65,Germany City 2 Main Road
+66,46,3,Historical Site #66,Nigeria City 1 Main Road
+67,50,6,Adventure #67,Ghana City 3 Main Road
+68,26,2,Museum #68,Romania City 2 Main Road
+69,48,5,Religious Site #69,Ghana City 1 Main Road
+70,50,1,Beach #70,Ghana City 3 Main Road
+71,23,6,Adventure #71,Poland City 1 Main Road
+72,53,6,Adventure #72,New Zealand City 1 Main Road
+73,18,1,Beach #73,Germany City 1 Main Road
+74,15,7,Shopping #74,Indonesia City 3 Main Road
+75,41,4,Park #75,Kenya City 2 Main Road
+76,38,7,Shopping #76,Canada-West City 2 Main Road
+77,9,1,Beach #77,Thailand City 1 Main Road
+78,50,2,Museum #78,Ghana City 3 Main Road
+79,12,4,Park #79,Vietnam City 2 Main Road
+80,48,2,Museum #80,Ghana City 1 Main Road
+81,1,3,Historical Site #81,India City 1 Main Road
+82,48,6,Adventure #82,Ghana City 1 Main Road
+83,47,2,Museum #83,Nigeria City 2 Main Road
+84,47,6,Adventure #84,Nigeria City 2 Main Road
+85,40,1,Beach #85,Kenya City 1 Main Road
+86,28,2,Museum #86,USA-East City 1 Main Road
+87,42,5,Religious Site #87,Kenya City 3 Main Road
+88,17,7,Shopping #88,France City 2 Main Road
+89,47,2,Museum #89,Nigeria City 2 Main Road
+90,33,3,Historical Site #90,Canada-East City 3 Main Road
+91,28,8,Wildlife #91,USA-East City 1 Main Road
+92,30,8,Wildlife #92,USA-East City 3 Main Road
+93,34,5,Religious Site #93,USA-West City 1 Main Road
+94,3,4,Park #94,Sri Lanka City 1 Main Road
+95,9,3,Historical Site #95,Thailand City 1 Main Road
+96,15,5,Religious Site #96,Indonesia City 3 Main Road
+97,7,5,Religious Site #97,Nepal City 2 Main Road
+98,26,3,Historical Site #98,Romania City 2 Main Road
+99,40,1,Beach #99,Kenya City 1 Main Road
+100,39,2,Museum #100,Canada-West City 3 Main Road
+101,28,8,Wildlife #101,USA-East City 1 Main Road
+102,51,4,Park #102,Australia City 1 Main Road
+103,34,4,Park #103,USA-West City 1 Main Road
+104,5,4,Park #104,Sri Lanka City 3 Main Road
+105,46,7,Shopping #105,Nigeria City 1 Main Road
+106,34,1,Beach #106,USA-West City 1 Main Road
+107,38,1,Beach #107,Canada-West City 2 Main Road
+108,34,3,Historical Site #108,USA-West City 1 Main Road
+109,33,4,Park #109,Canada-East City 3 Main Road
+110,6,6,Adventure #110,Nepal City 1 Main Road
+111,33,4,Park #111,Canada-East City 3 Main Road
+112,47,4,Park #112,Nigeria City 2 Main Road
+113,18,8,Wildlife #113,Germany City 1 Main Road
+114,36,2,Museum #114,USA-West City 3 Main Road
+115,2,5,Religious Site #115,India City 2 Main Road
+116,21,5,Religious Site #116,Spain City 1 Main Road
+117,26,4,Park #117,Romania City 2 Main Road
+118,58,7,Shopping #118,Samoa City 1 Main Road
+119,13,3,Historical Site #119,Indonesia City 1 Main Road
+120,17,8,Wildlife #120,France City 2 Main Road
+121,25,3,Historical Site #121,Romania City 1 Main Road
+122,59,5,Religious Site #122,Samoa City 2 Main Road
+123,51,5,Religious Site #123,Australia City 1 Main Road
+124,3,7,Shopping #124,Sri Lanka City 1 Main Road
+125,14,4,Park #125,Indonesia City 2 Main Road
+126,49,3,Historical Site #126,Ghana City 2 Main Road
+127,4,1,Beach #127,Sri Lanka City 2 Main Road
+128,51,3,Historical Site #128,Australia City 1 Main Road
+129,17,7,Shopping #129,France City 2 Main Road
+130,55,1,Beach #130,New Zealand City 3 Main Road
+131,18,8,Wildlife #131,Germany City 1 Main Road
+132,26,5,Religious Site #132,Romania City 2 Main Road
+133,40,2,Museum #133,Kenya City 1 Main Road
+134,8,3,Historical Site #134,Nepal City 3 Main Road
+135,33,5,Religious Site #135,Canada-East City 3 Main Road
+136,30,3,Historical Site #136,USA-East City 3 Main Road
+137,47,1,Beach #137,Nigeria City 2 Main Road
+138,59,6,Adventure #138,Samoa City 2 Main Road
+139,40,6,Adventure #139,Kenya City 1 Main Road
+140,25,1,Beach #140,Romania City 1 Main Road
+141,24,3,Historical Site #141,Poland City 2 Main Road
+142,25,2,Museum #142,Romania City 1 Main Road
+143,49,6,Adventure #143,Ghana City 2 Main Road
+144,19,6,Adventure #144,Germany City 2 Main Road
+145,10,6,Adventure #145,Thailand City 2 Main Road
+146,20,8,Wildlife #146,Germany City 3 Main Road
+147,2,7,Shopping #147,India City 2 Main Road
+148,7,3,Historical Site #148,Nepal City 2 Main Road
+149,6,1,Beach #149,Nepal City 1 Main Road
+150,46,5,Religious Site #150,Nigeria City 1 Main Road

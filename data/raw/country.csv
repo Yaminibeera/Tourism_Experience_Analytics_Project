@@ -1,0 +1,24 @@
+CountryId,Country,RegionId
+1,India,1
+2,Sri Lanka,1
+3,Nepal,1
+4,Thailand,2
+5,Vietnam,2
+6,Indonesia,2
+7,France,3
+8,Germany,3
+9,Spain,3
+10,Poland,4
+11,Romania,4
+12,USA-East,5
+13,Canada-East,5
+14,USA-West,6
+15,Canada-West,6
+16,Kenya,7
+17,Tanzania,7
+18,Nigeria,8
+19,Ghana,8
+20,Australia,9
+21,New Zealand,9
+22,Fiji,10
+23,Samoa,10
