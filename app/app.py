@@ -30,14 +30,30 @@ st.set_page_config(page_title="Tourism Experience Analytics", layout="wide")
 
 @st.cache_data
 def load_data():
+    if not DATA_PATH.exists():
+        with st.spinner("Processed dataset not found. Running data pipeline to build dataset..."):
+            import data_pipeline
+            data_pipeline.build_consolidated_dataset()
     return pd.read_csv(DATA_PATH)
 
 
 @st.cache_resource
 def load_models():
-    reg = joblib.load(MODELS_DIR / "regression_model.joblib")
-    clf = joblib.load(MODELS_DIR / "classification_model.joblib")
-    rec = joblib.load(MODELS_DIR / "recommender.joblib")
+    reg_path = MODELS_DIR / "regression_model.joblib"
+    clf_path = MODELS_DIR / "classification_model.joblib"
+    rec_path = MODELS_DIR / "recommender.joblib"
+
+    if not (reg_path.exists() and clf_path.exists() and rec_path.exists()):
+        with st.spinner("Model artifacts not found. Training models now (first-time setup)..."):
+            import train_models
+            dataset = load_data()
+            train_models.train_regression(dataset)
+            train_models.train_classification(dataset)
+            train_models.train_recommender(dataset)
+
+    reg = joblib.load(reg_path)
+    clf = joblib.load(clf_path)
+    rec = joblib.load(rec_path)
     return reg, clf, rec
 
 

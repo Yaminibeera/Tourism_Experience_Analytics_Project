@@ -9,6 +9,34 @@ An end-to-end machine learning platform designed to analyze tourist behavior, pr
 
 ---
 
+## ⚡ Quick Start for Evaluators & Reviewers
+
+### Option 1: 1-Click Launch (Windows)
+Simply double-click:
+👉 **`run_app.bat`**
+
+> *This launcher automatically verifies your Python installation, checks and installs missing dependencies from `requirements.txt`, launches the Streamlit web server, and opens your browser automatically!*
+
+### Option 2: Run via Command Line (Windows / macOS / Linux)
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Run the application
+python -m streamlit run app/app.py
+```
+
+### Option 3: Unix / macOS 1-Click Launcher
+```bash
+chmod +x run_app.sh
+./run_app.sh
+```
+
+Once running, the application will automatically open or you can navigate to:
+🌐 **[http://localhost:8501](http://localhost:8501)**
+
+---
+
 ## 📌 Project Overview
 
 In the travel and tourism industry, understanding traveler preferences and delivering tailored recommendations is key to enhancing visitor satisfaction and driving destination engagement. 
